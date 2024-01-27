@@ -5,30 +5,70 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  
+
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="https://bulma.io">
+            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
+          </a>
+
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+          <div class="navbar-start">
+            <a class="navbar-item">
+              Home
+            </a>
+
+            <a class="navbar-item">
+              Documentation
+            </a>
+
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                More
+              </a>
+
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                  About
+                </a>
+                <a class="navbar-item">
+                  Jobs
+                </a>
+                <a class="navbar-item">
+                  Contact
+                </a>
+                <span class="navbar-divider"></span>
+                <a class="navbar-item">
+                  Report an issue
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="buttons">
+                <a class="button is-primary">
+                  <strong>Sign up</strong>
+                </a>
+                <a class="button is-light">
+                  Log in
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
     </>
   )
 }
