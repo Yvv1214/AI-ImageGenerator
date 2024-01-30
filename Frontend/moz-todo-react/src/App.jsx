@@ -5,6 +5,7 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [url, setUrl] = useState()
 
 
   return (
@@ -23,52 +24,42 @@ function App() {
         </div>
 
         <div id="navbarBasicExample" class="navbar-menu">
-          <div class="navbar-start">
-            <a class="navbar-item">
-              Home
-            </a>
-
-            <a class="navbar-item">
-              Documentation
-            </a>
-
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">
-                More
-              </a>
-
-              <div class="navbar-dropdown">
-                <a class="navbar-item">
-                  About
-                </a>
-                <a class="navbar-item">
-                  Jobs
-                </a>
-                <a class="navbar-item">
-                  Contact
-                </a>
-                <span class="navbar-divider"></span>
-                <a class="navbar-item">
-                  Report an issue
-                </a>
-              </div>
-            </div>
-          </div>
 
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
                 <a class="button is-primary">
-                  <strong>Sign up</strong>
+                  <strong>Home</strong>
                 </a>
                 <a class="button is-light">
-                  Log in
+                  About
                 </a>
               </div>
             </div>
           </div>
         </div>
       </nav>
+
+      <div className='columns is-desktop'>
+        <div className='left-container column is-half-desktop'>
+          <h1 className='container is-size-1 has-text-centered'>AI Image Generator</h1>
+          <form class="control ml-2">
+            <label for='input'>Describe your image</label>
+            <input class="input" id='input' type="text" placeholder="Image Description"></input>
+          </form>
+        </div>
+
+        <div className='right-container column is-half-desktop'>
+          <div className='img-box'>
+            box
+          </div>
+        </div>
+      </div>
+
+      <footer className='footer has-background-primary-light	'>
+        <div className='has-text-centered'>2024</div>
+      </footer>
+
     </>
   )
 }
