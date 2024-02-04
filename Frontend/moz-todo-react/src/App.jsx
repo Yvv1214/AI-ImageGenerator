@@ -5,7 +5,7 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  const [url, setUrl] = useState()
+  const [url, setUrl] = useState('')
 
 
   return (
@@ -16,14 +16,14 @@ function App() {
             <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
           </a>
 
-          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="burgerMenu">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </a>
         </div>
 
-        <div id="navbarBasicExample" class="navbar-menu">
+        <div id="burgerMenu" class="navbar-menu">
 
           <div class="navbar-end">
             <div class="navbar-item">
@@ -40,7 +40,7 @@ function App() {
         </div>
       </nav>
 
-      <div className='columns is-desktop'>
+      <div className='columns'>
         <div className='left-container column is-half-desktop'>
           <h1 className='container is-size-1 has-text-centered'>AI Image Generator</h1>
           <form class="control ml-2">
@@ -50,13 +50,19 @@ function App() {
         </div>
 
         <div className='right-container column is-half-desktop'>
-          <div className='img-box'>
-            box
-          </div>
+          {url ?
+          (<figure class="image is-square imgDiv">
+            <img src={url} />
+          </figure>)
+          :
+          (<figure class="image is-square imgDiv">
+            <img src="https://bulma.io/images/placeholders/256x256.png" />
+          </figure>)
+          }
         </div>
       </div>
 
-      <footer className='footer has-background-primary-light	'>
+      <footer className='has-background-primary-light	'>
         <div className='has-text-centered'>2024</div>
       </footer>
 

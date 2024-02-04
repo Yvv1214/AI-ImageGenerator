@@ -1,3 +1,38 @@
 #root {
   margin: 0 auto;
 }
+
+.column {
+  padding: 0;
+}
+
+.control {
+  padding: 1rem;
+}
+
+/*desktop */
+@media screen and (min-width: 480px) {
+  .right-container{
+  padding: 5rem;
+  padding-top: 1rem;
+  }
+}
+
+
+.imgDiv{
+  margin-top: 1rem;
+}
+
+img{
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+footer {
+  padding: 2rem;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: fit-content;
+}
