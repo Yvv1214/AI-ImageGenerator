@@ -7,6 +7,11 @@ function App() {
   const [count, setCount] = useState(0)
   const [url, setUrl] = useState('')
 
+  const getImage = async() => {
+    const generateUrl =  await fetch()
+    console.log('theURL')
+  }
+
 
   return (
     <>
@@ -43,31 +48,44 @@ function App() {
       <div className='columns'>
         <div className='left-container column is-half-desktop'>
           <h1 className='container is-size-1 has-text-centered'>AI Image Generator</h1>
-          <form class="control ml-2">
-            <label for='input'>Describe your image</label>
-            <input class="input" id='input' type="text" placeholder="Image Description"></input>
-          </form>
+
+            <form class="control ml-2" onSubmit={getImage}>
+              <label for='input'>Describe your image</label>
+              <span className='level-item'>
+                <input 
+                class="input"
+                 id='input' 
+                 type="text" 
+                 placeholder="Image Description">
+                 </input>
+                  <button 
+                  class="button" 
+                  onClick={getImage}>
+                    Search
+                  </button>
+              </span>
+            </form>
+          </div>
+
+          <div className='right-container column is-half-desktop'>
+            {url ?
+              (<figure class="image is-square imgDiv">
+                <img src={url} />
+              </figure>)
+              :
+              (<figure class="image is-square imgDiv">
+                <img src="https://bulma.io/images/placeholders/256x256.png" />
+              </figure>)
+            }
+          </div>
         </div>
 
-        <div className='right-container column is-half-desktop'>
-          {url ?
-          (<figure class="image is-square imgDiv">
-            <img src={url} />
-          </figure>)
-          :
-          (<figure class="image is-square imgDiv">
-            <img src="https://bulma.io/images/placeholders/256x256.png" />
-          </figure>)
-          }
-        </div>
-      </div>
+        <footer className='has-background-primary-light	'>
+          <div className='has-text-centered'>2024</div>
+        </footer>
 
-      <footer className='has-background-primary-light	'>
-        <div className='has-text-centered'>2024</div>
-      </footer>
-
-    </>
-  )
+      </>
+      )
 }
 
-export default App
+      export default App
