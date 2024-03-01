@@ -46,9 +46,8 @@ async def createImg(request: Request):
         if not image_url:
             return HTTPException(status_code=400, detail='failed to get openai response')
         
-        return image_url
+        return {"image_url": image_url if image_url else ""}
         
-
 
             
 @app.options('/createImg')

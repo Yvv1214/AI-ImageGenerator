@@ -14,26 +14,20 @@ function App() {
   const getImage = async (e) => {
     e.preventDefault()
     // Send data to the backend
-    
-    await fetch("http://127.0.0.1:8000/createImg", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ userInput: userInput })
-    })
-      .then(response => {response.json()
-                        console.log('response', response)})
-      .then(data => {
-        // Handle the response from the backend
-        console.log('imgUrl', data);
-        
-        setUrl(data)
+    try {
+      const response = await fetch("http://127.0.0.1:8000/createImg", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ userInput: userInput })
       })
-      .catch(error => {
-        console.error("Error:", error);
-      });
-
+      const data = await response.json()
+      console.log('data', data)
+      setUrl(data.image_url)
+    } catch (error) {
+      console.log('error', error)
+    }
   }
 
 
