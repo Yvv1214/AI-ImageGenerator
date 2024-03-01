@@ -6,3 +6,4 @@
 -   npm run dev
 -   cd Backend
 -   venv\Scripts\Activate.ps1
+-   run with uvicorn main:app --reload
