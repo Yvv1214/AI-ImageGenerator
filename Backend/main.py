@@ -1,10 +1,19 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.middleware.cors import CORSMiddleware
 from decouple import config
 import openai
 import os
 
 
 app = FastAPI()
+
+# Enable CORS to allow cross-origin requests
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 openai.organization = config('OPEN_AI_ORG')
 openai.api_key = config('OPEN_AI_KEY')
@@ -18,13 +27,14 @@ async def root():
 
 
 @app.post('/createImg')
-async def createImg():
-
-        prompt = "yellow cats"
+async def createImg(request: Request):
+        
+        data = await request.json()
+        userInput = data.get('userInput')  # Retrieve userInput from the JSON payload
 
         response = openai.images.generate(
         model="dall-e-3",
-        prompt= prompt,
+        prompt= userInput,
         size="1024x1024",
         quality="standard",
         n=1,
@@ -36,8 +46,17 @@ async def createImg():
         if not image_url:
             return HTTPException(status_code=400, detail='failed to get openai response')
         
+        return image_url
         
-        
+
+
+            
+@app.options('/createImg')
+async def options_createImg():
+    return {"Allow": "POST"}
+
+
+
 
 @app.post('/variation')
 async def variation():

@@ -4,6 +4,14 @@
   contain: content;
 }
 
+.navbar {
+  border: 1px solid black;
+}
+
+.img-box {
+  border: 2px solid red;
+}
+
 .column {
   padding: 0;
 }
