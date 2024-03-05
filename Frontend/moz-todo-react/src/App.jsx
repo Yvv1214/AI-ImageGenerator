@@ -9,12 +9,14 @@ import './App.css'
 function App() {
   const [url, setUrl] = useState('')
   const [userInput, setUserInput] = useState('')
+  const [loading, setLoading] = useState(false)
 
 
   const getImage = async (e) => {
     e.preventDefault()
     // Send data to the backend
     try {
+      setLoading(true)
       const response = await fetch("http://127.0.0.1:8000/createImg", {
         method: "POST",
         headers: {
@@ -25,6 +27,7 @@ function App() {
       const data = await response.json()
       console.log('data', data)
       setUrl(data.image_url)
+      setLoading(false)
     } catch (error) {
       console.log('error', error)
     }
@@ -89,12 +92,19 @@ function App() {
         </div>
 
         <div className='right-container column is-half-desktop'>
+
+
           {url ?
             (<figure class="image is-square imgDiv">
               <img src={url} />
             </figure>)
             :
             (<figure class="image is-square imgDiv">
+
+              {loading === true ?
+                (<p className='loading pulse'>loading!</p>)
+                : <p className='loading'>loading! <i class="fas fa-spinner fa-pulse"></i></p>}
+
               <img src="https://bulma.io/images/placeholders/256x256.png" />
             </figure>)
           }
