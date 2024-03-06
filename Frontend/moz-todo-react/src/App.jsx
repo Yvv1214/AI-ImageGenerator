@@ -92,7 +92,14 @@ function App() {
         </div>
 
         <div className='right-container column is-half-desktop'>
-
+          {loading === true ?
+            (<h2 className='loading'>
+              <i class="fas fa-spinner fa-pulse"></i>
+              <p>Loading</p>
+            </h2>)
+            :
+            null
+          }
 
           {url ?
             (<figure class="image is-square imgDiv">
@@ -100,12 +107,7 @@ function App() {
             </figure>)
             :
             (<figure class="image is-square imgDiv">
-
-              {loading === true ?
-                (<p className='loading pulse'>loading!</p>)
-                : <p className='loading'>loading! <i class="fas fa-spinner fa-pulse"></i></p>}
-
-              <img src="https://bulma.io/images/placeholders/256x256.png" />
+              <img src="" />
             </figure>)
           }
         </div>
