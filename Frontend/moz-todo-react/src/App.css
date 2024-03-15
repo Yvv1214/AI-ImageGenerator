@@ -1,6 +1,6 @@
 #root {
   margin: 0 auto;
-  height: 105vh;
+  height: 100vh;
   contain: content;
 }
 
@@ -19,6 +19,13 @@
 .control {
   padding-left: 1rem;
   position: relative;
+  margin-bottom: 1rem;
+}
+
+.inputArea {
+  width: 100%;
+  resize: none;
+  border: solid 1px lightgray;
 }
 
 button {
@@ -37,6 +44,14 @@ button {
   .columns {
     margin-top: 4rem;
   }
+}
+
+.level-item {
+  align-items: start;
+}
+
+.container {
+  padding: 0.7rem;
 }
 
 .right-container {
@@ -72,7 +87,7 @@ img {
 /* -----------recoder---------- */
 
 .recordBtn {
-  position: absolute;
+  /* position: absolute; */
   z-index: 10;
   padding: 0;
   margin-right: 2rem;
