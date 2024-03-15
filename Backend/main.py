@@ -1,8 +1,9 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from decouple import config
 import openai
 import os
+import tempfile
 
 
 app = FastAPI()
@@ -74,17 +75,26 @@ async def variation():
     
 
     
-
-@app.post('/audio') 
-async def transcribe():
-     
-    audio_file= open("/path/to/file/audio.mp3", "rb")
-
-    transcription = openai.audio.transcriptions.create(
-    model="whisper-1", 
-    file=audio_file
-    )
     
-    print(transcription.text)
-    if not transcription.text:
-         return HTTPException(status_code=400, detail='failed to get openai transcription')
+@app.post('/audio')
+async def transcribe(file: UploadFile = File):
+    try:
+       #Get speech audio from frontend 
+        with open(file.filename, "wb") as buffer:
+            buffer.write(file.file.read())
+        audio_file = open(file.filename, "rb")
+
+        # Transcribe audio using OpenAI
+        transcription = openai.audio.transcriptions.create(
+            model="whisper-1",
+            file= audio_file,
+        )
+
+        transcribed_text = transcription.text
+        if not transcribed_text:
+            raise HTTPException(status_code=400, detail='Failed to transcribe audio')
+
+        return {"transcribed_text": transcribed_text}
+
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))

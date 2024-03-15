@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import axios from 'axios'
+import backgroundimg from '../../moz-todo-react/src/assets/backgroundimg.png'
+import { Microphone } from './component/Microphone'
 import './App.css'
 
 
@@ -27,11 +28,48 @@ function App() {
       const data = await response.json()
       console.log('data', data)
       setUrl(data.image_url)
-      setLoading(false)
     } catch (error) {
       console.log('error', error)
+    } finally {
+      setLoading(false)
     }
   }
+
+
+  const createBlobUrl = (data) => {
+    const blob = new Blob([data], {type: 'audio/mpeg'});
+    const url = window.URL.createObjectURL(blob);
+    return url;
+};
+
+
+const transcribe = async (blobUrl) => {
+  try {
+    setLoading(true);
+
+    // convert blob url to blob object
+    const blob = await fetch(blobUrl).then((res) => res.blob());
+
+    // construct audio to send file
+    const formData = new FormData();
+    formData.append('file', blob, 'myfile.wav');
+
+    // send form data to API endpoint
+    const response = await axios.post('http://127.0.0.1:8000/audio', formData, {
+      headers: { 'Content-Type': 'audio/mpeg' },
+      responseType: 'json', //expected response
+    });
+
+    const transcription = response.data.transcribed_text;
+    console.log('HERE', transcription)
+    setUserInput(transcription)
+
+  } catch (error) {
+  } finally {
+    setLoading(false);
+  }
+};
+
 
 
   return (
@@ -89,6 +127,7 @@ function App() {
               </button>
             </span>
           </form>
+          <Microphone transcribe={transcribe} />
         </div>
 
         <div className='right-container column is-half-desktop'>
@@ -107,7 +146,7 @@ function App() {
             </figure>)
             :
             (<figure class="image is-square imgDiv">
-              <img src="" />
+              <img src={backgroundimg} />
             </figure>)
           }
         </div>

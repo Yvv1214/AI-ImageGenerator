@@ -18,6 +18,7 @@
 
 .control {
   padding-left: 1rem;
+  position: relative;
 }
 
 button {
@@ -28,9 +29,9 @@ button {
 
 /*desktop */
 @media screen and (min-width: 480px) {
-  .right-container{
-  padding: 5rem;
-  padding-top: 1rem;
+  .right-container {
+    padding: 5rem;
+    padding-top: 1rem;
   }
 
   .columns {
@@ -38,7 +39,7 @@ button {
   }
 }
 
-.right-container{
+.right-container {
   position: relative;
 }
 
@@ -55,17 +56,44 @@ button {
   bottom: 50%;
 }
 
-.imgDiv{
+.imgDiv {
   position: relative;
   margin-top: 1rem;
 }
 
-img{
+img {
   height: 100%;
   width: 100%;
   position: relative;
   background-image: url('src/assets/backgroundImg.png');
   background-size: cover;
+}
+
+/* -----------recoder---------- */
+
+.recordBtn {
+  position: absolute;
+  z-index: 10;
+  padding: 0;
+  margin-right: 2rem;
+  margin-left: 2rem;
+  border: none;
+  height: min-content;
+  border-radius: -11%;
+  background: none;
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.microphoneImg {
+  height: 100%;
+  width: 100%;
+}
+
+.microphoneImg:active{
+    background: red;
+    border-radius: 50%;
+    border: red 0.1rem solid;
 }
 
 footer {
