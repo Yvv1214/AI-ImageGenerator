@@ -36,12 +36,6 @@ function App() {
   }
 
 
-  const createBlobUrl = (data) => {
-    const blob = new Blob([data], {type: 'audio/mpeg'});
-    const url = window.URL.createObjectURL(blob);
-    return url;
-};
-
 
 const transcribe = async (blobUrl) => {
   try {
@@ -54,15 +48,15 @@ const transcribe = async (blobUrl) => {
     const formData = new FormData();
     formData.append('file', blob, 'myfile.wav');
 
-    // send form data to API endpoint
+    // send formData to API endpoint
     const response = await axios.post('http://127.0.0.1:8000/audio', formData, {
-      headers: { 'Content-Type': 'audio/mpeg' },
+      headers: { 'Content-Type': 'audio/mpeg' }, //sending audio
       responseType: 'json', //expected response
     });
 
     const transcription = response.data.transcribed_text;
     console.log('HERE', transcription)
-    setUserInput(transcription)
+    setUserInput(userInput + transcription) //adds on to input without replacing everything
 
   } catch (error) {
   } finally {
