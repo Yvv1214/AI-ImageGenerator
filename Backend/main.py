@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException, Request, File, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from decouple import config
+from starlette_prometheus import metrics, PrometheusMiddleware
 import openai
 import os
 import tempfile
@@ -16,10 +17,15 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Add Prometheus middleware to the application
+app.add_middleware(PrometheusMiddleware)
+
 openai.organization = config('OPEN_AI_ORG')
 openai.api_key = config('OPEN_AI_KEY')
 
 
+
+app.add_route("/metrics", metrics)
 
 @app.get("/")
 async def root():
@@ -98,3 +104,6 @@ async def transcribe(file: UploadFile = File):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+    
+
+

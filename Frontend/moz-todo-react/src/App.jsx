@@ -3,6 +3,7 @@ import axios from 'axios'
 import backgroundimg from '../../moz-todo-react/src/assets/backgroundimg.png'
 import { Microphone } from './component/Microphone'
 import './App.css'
+import logo from '../../moz-todo-react/src/assets/logo.png'
 
 
 
@@ -71,7 +72,7 @@ function App() {
       <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
           <a class="navbar-item" href="https://bulma.io">
-            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
+            <img src={logo} width="112" height="28" />
           </a>
 
           <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="burgerMenu">
