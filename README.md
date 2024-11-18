@@ -26,4 +26,4 @@ https://github.com/Yvv1214/AI-ImageGenerator/assets/39809411/dd46462e-d006-4f16-
 - Uvicorn
 - React Media Recorder
 - Bulma
-- Typescript
+- Javascript
